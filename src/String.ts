@@ -58,6 +58,12 @@ export class StringCircuitValue extends Struct({value: [UInt8]}) {
         
         // Convert field to bits
         const bits = field.toBits();
+
+        // Pad bits array to ensure length is a multiple of 8
+        const paddingLength = (8 - (bits.length % 8)) % 8;
+        for (let i = 0; i < paddingLength; i++) {
+            bits.push(Bool(false)); // Add zero bits as padding
+        }
     
         // We are dealing with bytes (8 bits at a time), so group the bits into bytes
         const byteArray = new Uint8Array(bits.length / 8);
