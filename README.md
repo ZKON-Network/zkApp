@@ -80,6 +80,8 @@ Important note: We don't actually support import extrernal deps other than the o
 
 Inside your zkapp call the sendRequest method of the coordinator, you will need to send your zkapp address and an ipfs hash (divided in two parts) with the json request. Will explain more later on the format. 
 
+Optionally you can send a fourth parameter, the nonce, which allow multiple request on the same block.
+
 ```tsx
   @method.returns(Field)
   async sendRequest(hashPart1: Field, hashPart2: Field) {
